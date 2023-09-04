@@ -1,9 +1,9 @@
 package ru.otus.pro;
 
-import java.util.Arrays;
+import com.google.common.base.Joiner;
 
 public class MainApp {
     public static void main(String[] args) {
-        System.out.println(String.format("Hello! I'm running with args: %s", Arrays.toString(args)));
+        System.out.printf("Hello! I'm running with args: %s", Joiner.on("; ").join(args));
     }
 }
