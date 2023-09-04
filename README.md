@@ -1,2 +1,2 @@
 # otus-javapro-homeworks
-Simple grandle project
+Homework for the Otus cources
