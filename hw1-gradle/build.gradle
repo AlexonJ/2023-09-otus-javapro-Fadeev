@@ -22,7 +22,7 @@ test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.otus.pro.MainApp.java'
+                'Main-Class': 'ru.otus.pro.MainApp'
         )
     }
     from {
