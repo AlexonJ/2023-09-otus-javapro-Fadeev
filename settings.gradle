@@ -2,4 +2,5 @@ rootProject.name = 'otus-javapro-homeworks'
 include 'hw1-gradle'
 include 'hw3-using-collections'
 include 'hw5-using-annotations'
+include 'hw6-annotation-processor'
 
