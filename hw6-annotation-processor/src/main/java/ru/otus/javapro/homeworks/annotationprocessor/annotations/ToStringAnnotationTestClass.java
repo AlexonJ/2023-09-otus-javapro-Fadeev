@@ -1,6 +1,6 @@
 package ru.otus.javapro.homeworks.annotationprocessor.annotations;
 
-@ToStringCustom
+@CustomToString
 public class ToStringAnnotationTestClass {
 
 }

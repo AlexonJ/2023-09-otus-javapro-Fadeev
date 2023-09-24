@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
-@SupportedAnnotationTypes("ru.otus.javapro.homeworks.annotationprocessor.annotations.ToStringCustom")
+@SupportedAnnotationTypes("ru.otus.javapro.homeworks.annotationprocessor.annotations.CustomToString")
 @AutoService(CustomAnnotationProcessor.class)
 public class CustomAnnotationProcessor extends AbstractProcessor {
 
