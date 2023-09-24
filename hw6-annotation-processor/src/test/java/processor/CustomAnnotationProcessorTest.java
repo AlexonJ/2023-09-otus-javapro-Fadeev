@@ -12,7 +12,7 @@ public class CustomAnnotationProcessorTest {
         System.out.println(Compiler.javac()
                 .withProcessors(new CustomAnnotationProcessor())
                 .compile(JavaFileObjects.forResource("java-files/ToStringAnnotationTestClass.java"))
-                .generatedSourceFile("ToStringAnnotationTestClassGenerated.java")
+//                .generatedSourceFile("ToStringAnnotationTestClassGenerated.java")
 //                .isPresent()
                 );
     }
