@@ -1,0 +1,61 @@
+package ru.otus.javapro.homeworks.atmemulator.domain;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
+public class BanknoteStackImpl implements BanknoteStack{
+
+    private final Map<Long, Long> banknotes = new HashMap<>();
+
+    @Override
+    public Map<Long, Long> getBanknotes() {
+        return banknotes;
+    }
+
+    @Override
+    public Long getTotalSum() {
+        return banknotes.entrySet().stream().mapToLong(value -> value.getKey() * value.getValue()).sum();
+    }
+
+    @Override
+    public void addBanknoteStack(BanknoteStack banknoteStack) {
+        banknoteStack.getBanknotes().forEach((key, value) -> banknotes.put(key, banknotes.getOrDefault(key, 0L) + value));
+    }
+
+    @Override
+    public void takeBanknoteStack(BanknoteStack banknoteStack){
+        banknoteStack.getBanknotes().forEach((key, value) -> banknotes.put(key, banknotes.getOrDefault(key, 0L) - value));
+    }
+
+    @Override
+    public BanknoteStack getBanknoteStackBySum(Long sum) {
+        BanknoteStack banknoteStack = new BanknoteStackImpl();
+        getSortedBanknotesStream().forEach(tLongEntry ->
+        {
+            Long key = tLongEntry.getKey();
+            Long value = tLongEntry.getValue();
+            banknoteStack.getBanknotes().put(key,
+                    Long.min((sum - banknoteStack.getTotalSum())/key, value));
+        });
+        return banknoteStack;
+    }
+
+    @Override
+    public void putBanknote(Long value, Long amount){
+        banknotes.put(value, amount);
+    }
+
+    public Stream<Map.Entry<Long, Long>> getSortedBanknotesStream(){
+        return banknotes.entrySet().stream().sorted((o1, o2) -> o2.getKey().intValue() - o1.getKey().intValue());
+    }
+
+    @Override
+    public String toString() {
+        return getSortedBanknotesStream().filter(tLongEntry -> tLongEntry.getValue() != 0)
+                .map(tLongEntry -> tLongEntry.getKey() + "x" + tLongEntry.getValue()).collect(Collectors.joining(", "));
+    }
+
+}
