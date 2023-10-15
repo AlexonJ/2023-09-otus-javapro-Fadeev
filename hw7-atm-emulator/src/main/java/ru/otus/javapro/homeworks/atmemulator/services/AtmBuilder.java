@@ -50,7 +50,7 @@ public class AtmBuilder {
                 new CashWithdrawalSingleCommandProcessor(
                         new MenuOption(1, "Cash withdrawal"), terminalService, cashStorageService),
                 new CashDepositSingleCommandProcessor(
-                        new MenuOption(2, "Cash deposit"), terminalService, cashStorageService, depositMenu,depositMenu.getSize() - 1),
+                        new MenuOption(2, "Cash deposit"), terminalService, cashStorageService, depositMenu),
                 new ShowBalanceSingleCommandProcessor(
                         new MenuOption(3, "Print balance"), terminalService, cashStorageService),
                 new StopAtmSingleCommandProcessor(

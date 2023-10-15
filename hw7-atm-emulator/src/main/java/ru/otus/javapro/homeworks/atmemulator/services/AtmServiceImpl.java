@@ -8,7 +8,7 @@ import ru.otus.javapro.homeworks.atmemulator.menu.processors.MenuCommandsProcess
 @AllArgsConstructor
 public class AtmServiceImpl implements AtmService{
 
-    private final TerminalService terminal;
+    private final TerminalService terminalService;
     private final AtmStopService atmStopService;
     private final MenuOptionsRegistry mainMenuOptionsRegistry;
     private final MenuCommandsProcessor menuCommandsProcessor;
@@ -16,7 +16,9 @@ public class AtmServiceImpl implements AtmService{
     @Override
     public void run() {
         while (atmStopService.isAtmRunning()) {
-            int selectedOption = terminal.getSelectedMenuOption(mainMenuOptionsRegistry);
+            terminalService.printLine("");
+            terminalService.printLine("Welcome to main menu.");
+            int selectedOption = terminalService.getSelectedMenuOption(mainMenuOptionsRegistry);
             processMenuCommand(selectedOption);
         }
     }

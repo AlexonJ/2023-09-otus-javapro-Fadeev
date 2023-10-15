@@ -18,7 +18,7 @@ public class CashWithdrawalSingleCommandProcessor implements MenuSingleCommandPr
         long amount;
         do{
             amount = 0L;
-            String amountString = terminalService.readStringWithPrompt("Enter amount or 0 to exit: ");
+            String amountString = terminalService.readStringWithPrompt("Enter amount to withdrawal or 0 to exit: ");
             try{
                 amount = Long.parseLong(amountString);
 
@@ -31,7 +31,7 @@ public class CashWithdrawalSingleCommandProcessor implements MenuSingleCommandPr
                     BanknoteStack banknoteStackToIssue = cashStorageService.getBanknoteStackBySum(amount);
                     cashStorageService.takeBanknoteStack(banknoteStackToIssue);
                     terminalService.printFormattedLine("You got: " + banknoteStackToIssue);
-                    terminalService.printLine("");
+                    terminalService.waitUntilEnterIsPressed();
                     break;
                 }
 

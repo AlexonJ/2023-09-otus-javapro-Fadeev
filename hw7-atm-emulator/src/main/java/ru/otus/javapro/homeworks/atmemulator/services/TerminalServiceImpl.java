@@ -67,4 +67,10 @@ public class TerminalServiceImpl implements TerminalService{
         options.forEach(menuOption -> printFormattedLine("%s.%s", menuOption.getId(), menuOption.getDescription()));
         return readIntForRangeWithPrompt(1, options.size(), "Choose option: ", "Incorrect option");
     }
+
+    @Override
+    public void waitUntilEnterIsPressed() {
+        printLine("Press enter to continue ...");
+        scanner.nextLine();
+    }
 }

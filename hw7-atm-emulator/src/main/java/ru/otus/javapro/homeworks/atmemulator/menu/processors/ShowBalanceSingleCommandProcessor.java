@@ -15,7 +15,7 @@ public class ShowBalanceSingleCommandProcessor implements MenuSingleCommandProce
     @Override
     public void processCommand() {
         terminalService.printFormattedLine("Total balance is: %s", cashStorageService.getTotalBalance());
-        terminalService.printLine("");
+        terminalService.waitUntilEnterIsPressed();
     }
 
     @Override
