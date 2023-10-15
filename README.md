@@ -1,2 +1,1 @@
-# otus-javapro-homeworks
-Homework for the Otus cources
+Homework repository for OTUS Java Pro courses (2023-09) by Fadeev Alexey
