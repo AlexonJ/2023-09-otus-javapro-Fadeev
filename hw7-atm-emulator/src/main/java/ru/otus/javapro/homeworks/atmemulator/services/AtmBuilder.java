@@ -1,7 +1,7 @@
 package ru.otus.javapro.homeworks.atmemulator.services;
 
-import ru.otus.javapro.homeworks.atmemulator.domain.BanknoteStackImpl;
-import ru.otus.javapro.homeworks.atmemulator.domain.MoneyRub;
+import ru.otus.javapro.homeworks.atmemulator.domain.BanknoteStack;
+import ru.otus.javapro.homeworks.atmemulator.domain.Money;
 import ru.otus.javapro.homeworks.atmemulator.menu.MenuOption;
 import ru.otus.javapro.homeworks.atmemulator.menu.MenuOptionsRegistry;
 import ru.otus.javapro.homeworks.atmemulator.menu.MenuOptionsRegistryImpl;
@@ -17,7 +17,8 @@ public class AtmBuilder {
     public static AtmService build() {
 
         TerminalService terminalService = new TerminalServiceImpl(System.out, System.in);
-        CashStorageService cashStorageService = new CashStorageServiceImpl(new BanknoteStackImpl(), new MoneyRub());
+        CashStorageService cashStorageService = new CashStorageServiceImpl(new BanknoteStack(), new Money("RUB", 5000L, 2000L, 1000L, 500L, 100L));
+
         AtmStopService atmStopService = new AtmStopServiceImpl();
 
         List<MenuSingleCommandProcessor> mainMenuProcessors = getMainMenuSingleCommandProcessors(terminalService, cashStorageService, atmStopService);
@@ -32,7 +33,7 @@ public class AtmBuilder {
                 mainMenuOptionsRegistry,
                 new MenuCommandsProcessorImpl(mainMenuProcessors));
 
-        BanknoteStackImpl banknoteStack = new BanknoteStackImpl();
+        BanknoteStack banknoteStack = new BanknoteStack();
         banknoteStack.putBanknote(5000L,10L);
         banknoteStack.putBanknote(2000L,20L);
         banknoteStack.putBanknote(1000L,50L);

@@ -16,9 +16,7 @@ public class MenuOption {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         MenuOption that = (MenuOption) o;
-
         return id == that.id;
     }
 

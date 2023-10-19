@@ -41,6 +41,6 @@ public class CashStorageServiceImpl implements CashStorageService {
 
     @Override
     public List<Long> getBanknoteDenominations(){
-        return money.getBanknoteDenominationsList();
+        return money.getDenominations();
     }
 }

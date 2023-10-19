@@ -1,10 +1,19 @@
 package ru.otus.javapro.homeworks.atmemulator.domain;
 
+import lombok.Getter;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface Money {
+@Getter
+public class Money{
 
-    List<Long> getBanknoteDenominationsList();
+    private final List<Long> denominations = new ArrayList<>();
+    private final String currency;
 
-    String getCurrency();
+    public Money(String currency, Long ... denomination) {
+        this.currency = currency;
+        this.denominations.addAll(List.of(denomination));
+    }
+
 }

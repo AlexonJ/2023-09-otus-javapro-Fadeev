@@ -16,15 +16,13 @@ public class CashWithdrawalSingleCommandProcessor implements MenuSingleCommandPr
     @Override
     public void processCommand() {
         long amount;
-        do{
+        do {
             amount = 0L;
             String amountString = terminalService.readStringWithPrompt("Enter amount to withdrawal or 0 to exit: ");
-            try{
+            try {
                 amount = Long.parseLong(amountString);
-
                 if (amount > cashStorageService.getTotalBalance()) {
                     terminalService.printLine("Entered amount is greater than the balance ");
-
                 } else if (!cashStorageService.isAmountCanBeIssued(amount)) {
                     terminalService.printLine("Entered amount cannot be issued");
                 } else if (amount != 0) {
@@ -34,13 +32,10 @@ public class CashWithdrawalSingleCommandProcessor implements MenuSingleCommandPr
                     terminalService.waitUntilEnterIsPressed();
                     break;
                 }
-
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 terminalService.printLine("You entered a wrong number");
             }
-
         } while (amount != 0L);
-
     }
 
     @Override

@@ -2,7 +2,6 @@ package ru.otus.javapro.homeworks.atmemulator.menu.processors;
 
 import lombok.AllArgsConstructor;
 import ru.otus.javapro.homeworks.atmemulator.domain.BanknoteStack;
-import ru.otus.javapro.homeworks.atmemulator.domain.BanknoteStackImpl;
 import ru.otus.javapro.homeworks.atmemulator.menu.MenuOption;
 import ru.otus.javapro.homeworks.atmemulator.menu.MenuOptionsRegistry;
 import ru.otus.javapro.homeworks.atmemulator.services.CashStorageService;
@@ -19,42 +18,36 @@ public class CashDepositSingleCommandProcessor implements MenuSingleCommandProce
     @Override
     public void processCommand() {
         int selectedOption;
-        do{
-            BanknoteStack banknoteStackToAdd = new BanknoteStackImpl();
+        do {
+            BanknoteStack banknoteStackToAdd = new BanknoteStack();
             terminalService.printLine("Choose banknote to deposit: ");
             selectedOption = terminalService.getSelectedMenuOption(menuOptionsRegistry);
-            if (selectedOption - 1 < cashStorageService.getBanknoteDenominations().size()){
-
+            if (selectedOption - 1 < cashStorageService.getBanknoteDenominations().size()) {
                 banknoteStackToAdd.putBanknote(
-                        cashStorageService.getBanknoteDenominations().get(selectedOption-1), getEnteredBanknoteAmount());
+                        cashStorageService.getBanknoteDenominations().get(selectedOption - 1), getEnteredBanknoteAmount());
                 cashStorageService.putBanknoteStack(banknoteStackToAdd);
                 terminalService.printFormattedLine("You put: %s (%s).", banknoteStackToAdd.getTotalSum(), banknoteStackToAdd);
                 terminalService.waitUntilEnterIsPressed();
             }
-
         } while (selectedOption - 1 < cashStorageService.getBanknoteDenominations().size());
-
     }
 
-    private long getEnteredBanknoteAmount(){
+    private long getEnteredBanknoteAmount() {
 
         boolean isContinue = true;
         long amount = 0L;
         do {
-            try{
+            try {
                 amount = Long.parseLong(terminalService.readStringWithPrompt("Enter number of banknotes (or 0 to exit): "));
                 isContinue = false;
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 terminalService.printLine("You entered wrong number");
             }
-            if (amount == 0){
+            if (amount == 0) {
                 isContinue = false;
             }
-
         } while (isContinue);
-
         return amount;
-
     }
 
     @Override

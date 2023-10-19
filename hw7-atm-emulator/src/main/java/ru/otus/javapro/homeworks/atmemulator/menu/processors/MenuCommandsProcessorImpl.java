@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class MenuCommandsProcessorImpl implements MenuCommandsProcessor {
     private final Map<MenuOption, MenuSingleCommandProcessor> processors;
-
     public MenuCommandsProcessorImpl(List<MenuSingleCommandProcessor> processors) {
         this.processors = processors.stream()
                 .collect(Collectors.toMap(MenuSingleCommandProcessor::getProcessedCommandOption, Function.identity()));
