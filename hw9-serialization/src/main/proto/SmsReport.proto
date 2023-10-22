@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package ru.otus.javapro.homeworks.hw9serialization.dao.dto;
+
+message SmsData {
+  string chatIdentifier = 1;
+  string membersLast = 2;
+  string sendDate = 3;
+  string text = 4;
+}
+
+message SmsDataGroupByNumber {
+  string belongNumber = 1;
+  repeated SmsData smsData = 2;
+}
+
+message SmsReport {
+  repeated SmsDataGroupByNumber smsDataGroupByNumber = 1;
+}
