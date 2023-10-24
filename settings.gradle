@@ -4,5 +4,6 @@ include 'hw3-using-collections'
 include 'hw5-using-annotations'
 include 'hw6-annotation-processor'
 include 'hw7-atm-emulator'
-//include 'hw8-design-patterns'
+include 'hw8-design-patterns'
 include 'hw9-serialization'
+
