@@ -1,6 +1,9 @@
 package ru.otus.javapro.homeworks.hw10homemadeorm.crm.model;
 
+import ru.otus.javapro.homeworks.hw10homemadeorm.annotations.IdField;
+
 public class Client {
+    @IdField
     private Long id;
     private String name;
 
