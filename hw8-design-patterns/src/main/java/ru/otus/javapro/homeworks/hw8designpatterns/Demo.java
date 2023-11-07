@@ -1,11 +1,11 @@
 package ru.otus.javapro.homeworks.hw8designpatterns;
 
 import ru.otus.javapro.homeworks.hw8designpatterns.handler.ComplexProcessor;
+import ru.otus.javapro.homeworks.hw8designpatterns.listener.ListenerPrinterConsole;
+import ru.otus.javapro.homeworks.hw8designpatterns.model.Message;
 import ru.otus.javapro.homeworks.hw8designpatterns.processor.LoggerProcessor;
 import ru.otus.javapro.homeworks.hw8designpatterns.processor.ProcessorConcatFields;
 import ru.otus.javapro.homeworks.hw8designpatterns.processor.ProcessorUpperField10;
-import ru.otus.javapro.homeworks.hw8designpatterns.listener.ListenerPrinterConsole;
-import ru.otus.javapro.homeworks.hw8designpatterns.model.Message;
 
 import java.util.List;
 
