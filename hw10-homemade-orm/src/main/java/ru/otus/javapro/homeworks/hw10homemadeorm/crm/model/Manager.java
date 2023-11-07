@@ -1,6 +1,9 @@
 package ru.otus.javapro.homeworks.hw10homemadeorm.crm.model;
 
+import ru.otus.javapro.homeworks.hw10homemadeorm.annotations.IdField;
+
 public class Manager {
+    @IdField
     private Long no;
     private String label;
     private String param1;
@@ -10,6 +13,11 @@ public class Manager {
 
     public Manager(String label) {
         this.label = label;
+    }
+
+    public Manager(String label, String param1) {
+        this.label = label;
+        this.param1 = param1;
     }
 
     public Manager(Long no, String label, String param1) {
@@ -47,6 +55,7 @@ public class Manager {
         return "Manager{" +
                 "no=" + no +
                 ", label='" + label + '\'' +
+                ", param1='" + param1 + '\'' +
                 '}';
     }
 }
