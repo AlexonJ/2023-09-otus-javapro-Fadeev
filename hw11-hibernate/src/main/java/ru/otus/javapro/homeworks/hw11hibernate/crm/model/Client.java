@@ -1,26 +1,24 @@
 package ru.otus.javapro.homeworks.hw11hibernate.crm.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 public class Client implements Cloneable {
 
     @Id
-    @SequenceGenerator(name = "client_gen", sequenceName = "client_seq",
+    @SequenceGenerator(name = "client_gen", sequenceName = "common_sequence",
             initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_gen")
     @Column(name = "id")
@@ -28,6 +26,12 @@ public class Client implements Cloneable {
 
     @Column(name = "name")
     private String name;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Address address;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Phone> phones;
 
     public Client(String name) {
         this.id = null;
@@ -39,9 +43,18 @@ public class Client implements Cloneable {
         this.name = name;
     }
 
+    public Client(Long id, String name, Address address, List<Phone> phones) {
+        this.id = id;
+        this.name = name;
+        this.address = Optional.ofNullable(address).map(Address::clone).orElse(null);
+        this.phones = Optional.ofNullable(phones)
+                .map(phoneList -> phoneList.stream().map(phone -> { phone.setClient(this); return phone.clone();}).toList())
+                .orElse(Collections.emptyList());
+    }
+
     @Override
     public Client clone() {
-        return new Client(this.id, this.name);
+        return new Client(this.id, this.name, this.address, this.phones);
     }
 
     @Override
@@ -49,6 +62,9 @@ public class Client implements Cloneable {
         return "Client{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", address=" + address +
+                ", phones=" + phones +
                 '}';
     }
+
 }
