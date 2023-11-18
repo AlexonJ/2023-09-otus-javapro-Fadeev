@@ -9,11 +9,13 @@
   </appender>
 
   <!--<logger name="org.hibernate.SQL" level="ERROR"/>-->
-  <logger name="org.hibernate" level="ERROR"/>
-  <logger name="ch.qos.logback" level="ERROR"/>
+  <logger name="org.hibernate" level="INFO"/>
+  <logger name="ch.qos.logback" level="INFO"/>
 
   <root level="INFO">
     <appender-ref ref="STDOUT"/>
   </root>
-
+  <root level="DEBUG">
+    <appender-ref ref="STDOUT"/>
+  </root>
 </configuration>

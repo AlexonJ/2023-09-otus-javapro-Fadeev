@@ -19,7 +19,7 @@ dependencies {
 
     implementation("org.postgresql:postgresql:42.6.0")
 
-    testImplementation("com.h2database:h2-mvstore:2.1.214")
+    implementation("com.h2database:h2:2.1.214")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.3")
     testImplementation("org.assertj:assertj-core:3.24.2")

@@ -7,7 +7,9 @@ import ru.otus.javapro.homeworks.hw11hibernate.core.repository.DataTemplateHiber
 import ru.otus.javapro.homeworks.hw11hibernate.core.repository.HibernateUtils;
 import ru.otus.javapro.homeworks.hw11hibernate.core.sessionmanager.TransactionManagerHibernate;
 import ru.otus.javapro.homeworks.hw11hibernate.crm.dbmigrations.MigrationsExecutorFlyway;
+import ru.otus.javapro.homeworks.hw11hibernate.crm.model.Address;
 import ru.otus.javapro.homeworks.hw11hibernate.crm.model.Client;
+import ru.otus.javapro.homeworks.hw11hibernate.crm.model.Phone;
 import ru.otus.javapro.homeworks.hw11hibernate.crm.service.DbServiceClientImpl;
 
 public class DbServiceDemo {
@@ -25,7 +27,7 @@ public class DbServiceDemo {
 
         new MigrationsExecutorFlyway(dbUrl, dbUserName, dbPassword).executeMigrations();
 
-        var sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class);
+        var sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class, Address.class, Phone.class);
 
         var transactionManager = new TransactionManagerHibernate(sessionFactory);
 ///
