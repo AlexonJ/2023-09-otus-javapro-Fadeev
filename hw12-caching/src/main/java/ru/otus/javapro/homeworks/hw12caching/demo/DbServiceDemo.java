@@ -23,7 +23,7 @@ public class DbServiceDemo {
     private static final Logger log = LoggerFactory.getLogger(DbServiceDemo.class);
 
     public static final String HIBERNATE_CFG_FILE = "hibernate.cfg.xml";
-    public static final int TOTAL_ITEMS_COUNT_TO_CREATE = 10000;
+    public static final int TOTAL_ITEMS_COUNT_TO_CREATE = 100000;
 
     public static void main(String[] args) {
         var configuration = new Configuration().configure(HIBERNATE_CFG_FILE);
