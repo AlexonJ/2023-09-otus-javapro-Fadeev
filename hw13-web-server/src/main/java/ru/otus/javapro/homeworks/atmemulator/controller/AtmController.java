@@ -20,8 +20,8 @@ public class AtmController {
         this.commandService = commandService;
     }
 
-    @GetMapping(path = "getMoney")
-    public ResponseEntity<String> getMoney(
+    @GetMapping(path = "getCash")
+    public ResponseEntity<String> getCash(
             @RequestParam String pinCode,
             @RequestParam Long amount) {
 
@@ -42,8 +42,8 @@ public class AtmController {
 
     }
 
-    @GetMapping(path = "putMoney")
-    public ResponseEntity<String> putMoney(
+    @GetMapping(path = "depositCash")
+    public ResponseEntity<String> depositCash(
             @RequestParam String pinCode,
             @RequestParam Long denomination,
             @RequestParam Long amount) {
@@ -52,7 +52,7 @@ public class AtmController {
         HttpStatus httpStatus = HttpStatus.OK;
 
         try {
-            returnMessage = commandService.putMoney(pinCode, denomination, amount);
+            returnMessage = commandService.depositCash(pinCode, denomination, amount);
         } catch (WrongPinCodeException e) {
             returnMessage = e.getMessage();
             httpStatus = HttpStatus.FORBIDDEN;

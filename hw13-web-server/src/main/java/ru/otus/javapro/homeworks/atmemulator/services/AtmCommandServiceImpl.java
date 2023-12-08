@@ -59,7 +59,7 @@ public class AtmCommandServiceImpl implements AtmCommandService{
     }
 
     @Override
-    public String putMoney(String pinCode, Long denomination, Long amount) throws WrongPinCodeException, WrongDenominationException {
+    public String depositCash(String pinCode, Long denomination, Long amount) throws WrongPinCodeException, WrongDenominationException {
 
         if (!securityService.isPinCorrect(pinCode)) {
             throw new WrongPinCodeException("You entered a wrong PIN code");

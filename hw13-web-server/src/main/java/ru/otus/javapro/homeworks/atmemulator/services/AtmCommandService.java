@@ -7,7 +7,7 @@ import ru.otus.javapro.homeworks.atmemulator.exceptions.WrongPinCodeException;
 public interface AtmCommandService {
     String getMoney(String pinCode, long amount) throws WrongPinCodeException, WrongAmountException;
 
-    String putMoney(String pinCode, Long denomination, Long amount) throws WrongPinCodeException, WrongDenominationException;
+    String depositCash(String pinCode, Long denomination, Long amount) throws WrongPinCodeException, WrongDenominationException;
 
     String getBalance(String pinCode) throws WrongPinCodeException;
 
