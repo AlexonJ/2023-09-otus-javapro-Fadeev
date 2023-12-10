@@ -9,3 +9,6 @@ include 'hw9-serialization'
 include 'hw10-homemade-orm'
 include 'hw11-hibernate'
 include 'hw12-caching'
+include 'hw13-web-server'
+include 'hw14-dependency-injection'
+
