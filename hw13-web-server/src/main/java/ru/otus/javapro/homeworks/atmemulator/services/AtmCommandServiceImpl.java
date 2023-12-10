@@ -19,6 +19,8 @@ public class AtmCommandServiceImpl implements AtmCommandService{
 
     AtmSecurityService securityService;
 
+    private final String WRONG_PING_CODE_MESSAGE = "You entered a wrong PIN code";
+
     public AtmCommandServiceImpl(@Autowired AtmSecurityService securityService,
                                  @Value("${service.banknote-denominations}") String denominationsString,
                                  @Value("${service.banknote-quantities}") String quantitiesString,
@@ -42,7 +44,7 @@ public class AtmCommandServiceImpl implements AtmCommandService{
     public String getMoney(String pinCode, long amount) throws WrongPinCodeException, WrongAmountException {
 
         if (!securityService.isPinCorrect(pinCode)) {
-            throw new WrongPinCodeException("You entered a wrong PIN code");
+            throw new WrongPinCodeException(WRONG_PING_CODE_MESSAGE);
         }
         if (amount > cashStorageService.getTotalBalance()) {
             throw new WrongAmountException("Amount is greater than the balance");
@@ -62,7 +64,7 @@ public class AtmCommandServiceImpl implements AtmCommandService{
     public String depositCash(String pinCode, Long denomination, Long amount) throws WrongPinCodeException, WrongDenominationException {
 
         if (!securityService.isPinCorrect(pinCode)) {
-            throw new WrongPinCodeException("You entered a wrong PIN code");
+            throw new WrongPinCodeException(WRONG_PING_CODE_MESSAGE);
         }
         if (!cashStorageService.isDenominationExist(denomination)) {
             throw new WrongDenominationException("You entered a wrong denomination");
@@ -78,7 +80,7 @@ public class AtmCommandServiceImpl implements AtmCommandService{
     @Override
     public String getBalance(String pinCode) throws WrongPinCodeException {
         if (!securityService.isPinCorrect(pinCode)) {
-            throw new WrongPinCodeException("You entered a wrong PIN code");
+            throw new WrongPinCodeException(WRONG_PING_CODE_MESSAGE);
         }
         cashStorageService.getTotalBalance();
         return "Your account balance is: " + cashStorageService.getTotalBalance();
@@ -87,7 +89,7 @@ public class AtmCommandServiceImpl implements AtmCommandService{
     @Override
     public String changePin(String pinCode, String newPinCode) throws WrongPinCodeException {
         if (!securityService.isPinCorrect(pinCode)) {
-            throw new WrongPinCodeException("You entered a wrong PIN code");
+            throw new WrongPinCodeException(WRONG_PING_CODE_MESSAGE);
         }
         securityService.setPinCode(newPinCode);
         return "PIN code changed successfully";

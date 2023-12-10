@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AtmSecurityServiceImpl implements AtmSecurityService {
 
-    public String pinCode;
+    private String pinCode;
     public AtmSecurityServiceImpl(@Value("${service.atm-pin-code-default}") String pinCode) {
         this.pinCode = pinCode;
     }

@@ -15,11 +15,12 @@ public class CashStorageServiceImpl implements CashStorageService {
     private final Money money;
 
     public CashStorageServiceImpl(Money money) {
-        BanknoteStack banknotes = new BanknoteStack();
-        money.getDenominations().forEach(denomination -> banknotes.putBanknote(denomination, 0L));
+
+        banknotes = new BanknoteStack();
+        money.getDenominations().forEach(denomination -> this.banknotes.putBanknote(denomination, 0L));
 
         this.money = money;
-        this.banknotes = banknotes;
+
     }
 
 
