@@ -20,8 +20,8 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
     private final List<Object> appComponents = new ArrayList<>();
     private final Map<String, Object> appComponentsByName = new HashMap<>();
 
-    private final String COMPONENT_NOT_FOUND_MESSAGE = "Component %s found in context";
-    private final String DUPLICATE_COMPONENT_MESSAGE = "Duplicate component found in context %s";
+    private static final String COMPONENT_NOT_FOUND_MESSAGE = "Component %s not found in context";
+    private static final String DUPLICATE_COMPONENT_MESSAGE = "Duplicate component found in context %s";
 
     public AppComponentsContainerImpl(Class<?> initialConfigClass) {
         processClassInitialization(initialConfigClass);
