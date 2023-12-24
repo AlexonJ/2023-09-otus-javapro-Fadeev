@@ -11,3 +11,5 @@ include 'hw11-hibernate'
 include 'hw12-caching'
 include 'hw13-web-server'
 include 'hw14-dependency-injection'
+include 'hw15-spring-data-jdbc'
+

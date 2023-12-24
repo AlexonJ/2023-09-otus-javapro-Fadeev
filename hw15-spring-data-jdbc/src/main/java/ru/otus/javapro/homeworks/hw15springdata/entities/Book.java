@@ -1,10 +1,14 @@
 package ru.otus.javapro.homeworks.hw15springdata.entities;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.util.List;
+
+@Data
 @Table("BOOKS")
 public class Book {
     @Id
@@ -15,51 +19,15 @@ public class Book {
     @MappedCollection(idColumn = "BOOK_ID")
     private BookDetails bookDetails;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
-
-    public BookDetails getBookDetails() {
-        return bookDetails;
-    }
-
-    public void setBookDetails(BookDetails bookDetails) {
-        this.bookDetails = bookDetails;
-    }
-
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
+    @MappedCollection(idColumn = "BOOK_ID")
+    private List<Review> review;
 
     @PersistenceCreator
-    public Book(Long id, String title, Long authorId, BookDetails bookDetails) {
+    public Book(Long id, String title, Long authorId, BookDetails bookDetails, List<Review> review) {
         this.id = id;
         this.title = title;
         this.authorId = authorId;
         this.bookDetails = bookDetails;
+        this.review = review;
     }
 }

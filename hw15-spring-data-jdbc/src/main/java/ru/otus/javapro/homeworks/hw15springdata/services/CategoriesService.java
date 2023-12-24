@@ -2,8 +2,10 @@ package ru.otus.javapro.homeworks.hw15springdata.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.otus.javapro.homeworks.hw15springdata.dtos.CreateOrUpdateCategoryDtoRq;
+import ru.otus.javapro.homeworks.hw15springdata.dtos.CategoryDto;
+import ru.otus.javapro.homeworks.hw15springdata.dtos.requests.CreateOrUpdateCategoryDtoRq;
 import ru.otus.javapro.homeworks.hw15springdata.entities.Category;
+import ru.otus.javapro.homeworks.hw15springdata.mappers.DtoMapper;
 import ru.otus.javapro.homeworks.hw15springdata.repositories.CategoriesRepository;
 
 import java.util.List;
@@ -12,10 +14,12 @@ import java.util.Optional;
 @Service
 public class CategoriesService {
     private final CategoriesRepository categoriesRepository;
+    private final DtoMapper mapper;
 
     @Autowired
-    public CategoriesService(CategoriesRepository categoriesRepository) {
+    public CategoriesService(CategoriesRepository categoriesRepository, DtoMapper mapper) {
         this.categoriesRepository = categoriesRepository;
+        this.mapper = mapper;
     }
 
     public List<Category> findAll() {
@@ -34,13 +38,13 @@ public class CategoriesService {
         categoriesRepository.deleteById(id);
     }
 
-    public void createNewCategory(CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
+    public CategoryDto createNewCategory(CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
         Category newCategory = new Category(createOrUpdateCategoryDtoRq.getId(), createOrUpdateCategoryDtoRq.getTitle());
-        categoriesRepository.save(newCategory);
+        return mapper.categoryToCategoryDto(categoriesRepository.save(newCategory));
     }
 
-    public void fullUpdateCategory(CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
+    public CategoryDto fullUpdateCategory(CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
         Category updatedCategory = new Category(createOrUpdateCategoryDtoRq.getId(), createOrUpdateCategoryDtoRq.getTitle());
-        categoriesRepository.save(updatedCategory);
+        return mapper.categoryToCategoryDto(categoriesRepository.save(updatedCategory));
     }
 }
