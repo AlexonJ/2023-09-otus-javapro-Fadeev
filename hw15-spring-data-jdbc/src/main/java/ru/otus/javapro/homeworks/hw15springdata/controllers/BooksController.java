@@ -2,9 +2,12 @@ package ru.otus.javapro.homeworks.hw15springdata.controllers;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,19 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.BookDto;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.DetailedBookDto;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.PageDto;
+import ru.otus.javapro.homeworks.hw15springdata.dtos.ReviewDto;
 import ru.otus.javapro.homeworks.hw15springdata.services.BooksService;
+import ru.otus.javapro.homeworks.hw15springdata.services.ReviewsService;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/books")
 public class BooksController {
-    private final BooksService booksService;
 
-    @Autowired
-    public BooksController(BooksService booksService) {
-        this.booksService = booksService;
-    }
+    private final BooksService booksService;
+    private final ReviewsService reviewsService;
 
     @GetMapping(path = "/detailed")
     public PageDto<DetailedBookDto> findAllDetailedBooksPaged(
@@ -58,5 +61,10 @@ public class BooksController {
     @PatchMapping("/{id}/title")
     public void updateTitleById(@PathVariable Long id, @RequestParam String value) {
         booksService.updateTitleById(id, value);
+    }
+
+    @GetMapping(value = "/{id}/reviews")
+    public ResponseEntity<List<ReviewDto>> getAllReviewsForBook(@PathVariable(name = "id") Long bookId) {
+        return new ResponseEntity<>(reviewsService.getAllForBookId(bookId), HttpStatus.OK);
     }
 }

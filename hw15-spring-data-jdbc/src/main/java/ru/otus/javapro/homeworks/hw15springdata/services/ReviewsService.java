@@ -1,5 +1,6 @@
 package ru.otus.javapro.homeworks.hw15springdata.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.ReviewDto;
 import ru.otus.javapro.homeworks.hw15springdata.exceptions.ResourceNotFoundException;
@@ -9,18 +10,13 @@ import ru.otus.javapro.homeworks.hw15springdata.repositories.ReviewsRepository;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class ReviewsService {
 
     private final ReviewsRepository reviewsRepository;
     private final BooksRepository booksRepository;
     private final DtoMapper mapper;
-
-    public ReviewsService(ReviewsRepository reviewsRepository, BooksRepository booksRepository, DtoMapper mapper) {
-        this.reviewsRepository = reviewsRepository;
-        this.booksRepository = booksRepository;
-        this.mapper = mapper;
-    }
 
     public List<ReviewDto> getAllForBookId(Long bookId) {
         booksRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book with id %s not found".formatted(bookId)));

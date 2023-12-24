@@ -1,5 +1,6 @@
 package ru.otus.javapro.homeworks.hw15springdata.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.CategoryDto;
@@ -11,16 +12,12 @@ import ru.otus.javapro.homeworks.hw15springdata.repositories.CategoriesRepositor
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class CategoriesService {
+
     private final CategoriesRepository categoriesRepository;
     private final DtoMapper mapper;
-
-    @Autowired
-    public CategoriesService(CategoriesRepository categoriesRepository, DtoMapper mapper) {
-        this.categoriesRepository = categoriesRepository;
-        this.mapper = mapper;
-    }
 
     public List<Category> findAll() {
         return categoriesRepository.findAll();

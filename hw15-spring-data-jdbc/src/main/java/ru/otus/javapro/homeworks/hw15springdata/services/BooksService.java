@@ -1,5 +1,6 @@
 package ru.otus.javapro.homeworks.hw15springdata.services;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import ru.otus.javapro.homeworks.hw15springdata.repositories.BooksRepository;
 import java.time.LocalDate;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class BooksService {
     private final BooksRepository booksRepository;
@@ -23,13 +25,6 @@ public class BooksService {
     private final BooksPagingRepository booksPagedRepository;
 
     private final DtoMapper mapper;
-
-    @Autowired
-    public BooksService(BooksRepository booksRepository, BooksPagingRepository booksPagingRepository, DtoMapper mapper) {
-        this.booksRepository = booksRepository;
-        this.booksPagedRepository = booksPagingRepository;
-        this.mapper = mapper;
-    }
 
     public PageDto<DetailedBookDto> findAllDetailedBooksPaged(Pageable pageable) {
 
