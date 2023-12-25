@@ -3,7 +3,7 @@ package ru.otus.javapro.homeworks.hw15springdata.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.CategoryDto;
-import ru.otus.javapro.homeworks.hw15springdata.dtos.CreateOrUpdateCategoryDtoRq;
+import ru.otus.javapro.homeworks.hw15springdata.dtos.requests.CreateOrUpdateCategoryDtoRq;
 import ru.otus.javapro.homeworks.hw15springdata.dtos.SimplestPageDto;
 import ru.otus.javapro.homeworks.hw15springdata.entities.Category;
 import ru.otus.javapro.homeworks.hw15springdata.exceptions.ResourceNotFoundException;
@@ -40,12 +40,12 @@ public class CategoriesController {
     }
 
     @PostMapping
-    public void createNewCategory(@RequestBody CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
-        categoriesService.createNewCategory(createOrUpdateCategoryDtoRq);
+    public CategoryDto createNewCategory(@RequestBody CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
+        return categoriesService.createNewCategory(createOrUpdateCategoryDtoRq);
     }
 
     @PutMapping
-    public void updateCategory(@RequestBody CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
-        categoriesService.fullUpdateCategory(createOrUpdateCategoryDtoRq);
+    public CategoryDto updateCategory(@RequestBody CreateOrUpdateCategoryDtoRq createOrUpdateCategoryDtoRq) {
+        return categoriesService.fullUpdateCategory(createOrUpdateCategoryDtoRq);
     }
 }

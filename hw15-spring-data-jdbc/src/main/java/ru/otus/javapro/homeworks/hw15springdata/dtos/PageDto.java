@@ -5,10 +5,17 @@ import lombok.Data;
 
 import java.util.List;
 
-
 @Data
 @AllArgsConstructor
-public class SimplestPageDto<T> {
+public class PageDto<T> {
+
+    private Integer pageNumber;
+
+    private Integer pageSize;
+
+    private Integer totalPages;
+
+    private Long totalElements;
 
     private List<T> content;
 
