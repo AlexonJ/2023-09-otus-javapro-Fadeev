@@ -11,7 +11,7 @@ public class SequenceNumbers {
 
     private final Condition firstCanRun = lock.newCondition();
     private final Condition secondCanRun = lock.newCondition();
-    private final int maxCounterValue = 10;
+    private final static int maxCounterValue = 10;
 
     private final CountDownLatch firstThreadStartedSignal = new CountDownLatch(1);
 
