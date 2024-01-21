@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package ru.otus.javapro.homeworks.hw19grpc.generated;
+
+option java_multiple_files = true;
+
+message Request {
+    int64 id = 1;
+    string content = 2;
+}
+
+message Response {
+    int64 id = 1;
+    string content = 2;
+}
+
+message Empty {}
+
+service LoadBalancerService {
+    rpc processRequest(Request) returns (stream Response);
+}
+
+service NodeService {
+    rpc processRequest(Request) returns (Response);
+}
