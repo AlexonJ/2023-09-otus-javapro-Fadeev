@@ -34,7 +34,7 @@ public class Main {
                 latch.countDown();
                 latch.await();
                 for (int i = 0; i < 20; i++) {
-                    var calculatedMedian = medianList.getMedian();
+                    medianList.getMedian();
                 }
 
             } catch (InterruptedException e) {
