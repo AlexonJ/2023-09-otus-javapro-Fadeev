@@ -14,5 +14,4 @@ include 'hw14-dependency-injection'
 include 'hw15-spring-data-jdbc'
 include 'hw16-using-https'
 include 'hw17-number-sequence'
-include 'hw19-grpc'
-
+include 'hw18-thread-safe-collection'
