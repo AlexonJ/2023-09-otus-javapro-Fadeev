@@ -5,12 +5,6 @@ spring:
     url: r2dbc:postgresql://localhost:5432/reactive
     username: postgres
     password: admin
-#  flyway:
-#    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=reactive
-#    user: postgres
-#    password: admin
-#    driver-class-name: org.postgresql.Driver
-
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     url: jdbc:postgresql://localhost:5432/reactive
